@@ -49,7 +49,7 @@ ElemType equeue(Queue *Q, ElemType e)
         }
     }
     Q->data[Q->rear] = e;
-    Q->rear++;
+    Q->rear++;//这个一定要放到外面。 if 是看是不是真满了
     return 1;
 }
 
