@@ -32,20 +32,71 @@ void preorderTraversal(TreeNode *root)
     {
         return;
     }
-    printf("%d -> ", root->data);
+    printf("%d", root->data);
     preorderTraversal(root->left);
     preorderTraversal(root->right);
 }
+void in_orderTraversal(TreeNode *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    in_orderTraversal(root->left);
+    printf("%d", root->data);
+    in_orderTraversal(root->right);
+}
+void post_orderTraversal(TreeNode *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    post_orderTraversal(root->left);
+
+    post_orderTraversal(root->right);
+    printf("%d ->", root->data);
+}
+// void preorderTraversal(TreeNode *root)
+// {
+//     if (root == NULL)
+//     {
+//         return;
+//     }
+//     printf("%d -> ", root->data);
+//     preorderTraversal(root->left);
+//     preorderTraversal(root->right);
+// }
+// void postorderTraversal(TreeNode *root)
+// {
+//     if (root == NULL)
+//         return;
+
+//     postorderTraversal(root->left);  // 1. 先去左边
+//     postorderTraversal(root->right); // 2.再去右边
+//     printf("%d -> ", root->data);    // 3. 最后访问自己
+// }
+// void inorderTraversal(TreeNode *root)
+// {
+//     if (root == NULL)
+//         return;
+
+//     inorderTraversal(root->left);  // 1. 先去左边
+//     printf("%d -> ", root->data);  // 2. 回来访问中间
+//     inorderTraversal(root->right); // 3. 最后去右边
+// }
 
 int main()
 {
     // --- 构建树 ---
     // 创建根节点 (Root)
-    TreeNode *root = creatNode(1);
-    root->left = creatNode(2);
-    root->right = creatNode(3);
-    root->left->left = creatNode(3);
-    root->right->right = creatNode(3);
+    TreeNode *root = creatNode(5);
+    root->left = creatNode(3);
+    root->right = creatNode(4);
+    root->left->left = creatNode(1);
+    root->left->right = creatNode(2);
 
     // TreeNode *root = createNode(1);
 
@@ -66,8 +117,8 @@ int main()
     */
 
     // --- 验证 ---
-    printf("Pre-order Traversal: ");
-    preorderTraversal(root);
+    printf("In-order Traversal: ");
+    post_orderTraversal(root);
     printf("NULL\n");
 
     // 注意：在实际工程中，程序结束前需要编写函数释放所有节点的内存 (free)
